@@ -40,7 +40,7 @@ A la suite de quoi il nous est demandé de présenter une exécution complète e
 
 ### Les Systèmes d'exploitations utilisés:
 
-- ** Les Serveur ** :
+- **Les Serveur** :
   - **Debian 12** : afin d'exécuter le script via Bash avec comme client la machine Ubuntu
   - **Windows Server 2022** : afin d'exécuter le script PowerShell avec comme client la machine Windows 10
   
