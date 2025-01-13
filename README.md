@@ -58,14 +58,12 @@ Nous avons rencontré plusieurs difficulté au cours de ce projet :
 - **Difficultés rencontrées au niveau de la connection SSH bash** : via debian, OpenSSH seul ne prend pas en charge l'entrée de mot de passe automatisée via la ligne de commande sans passer par un outil externe tel que SSHPASS
 - **Difficultés rencontrées au niveau de la connection SSH powershell** : Difficulté à installer la connectivité SSH du serveur au client via un serveur SSH
 
-
-  ## Les solutions trouvés :
-
+## Les solutions trouvés :
 
 - **Configuration de pare-feu** : Adaptation des règles de pare-feu pour permettre une communication fluide entre les machines virtuelles.
 - **Configuration connectivité SSH** : Via debian , en réponse au proble rencontré lors des essais de connectivité SSH, installation des logiciels OpenSSH et SSHPASS avant de faire fonctionner le script et également intégrer SSHPASS au script afin de garantir le bon fonctionnement de la connectivités.
 
-## Les Améliorations envisageable :
+## Les améliorations envisageable :
 
 - **L'Optimisation du scripts** : Il est toujours possible d'améliorer les deux scripts pour réduire le temps d'exécution et optimiser l'utilisation des ressources.
 - **Un meilleur visuel** : Proposer une meilleure expérience utilisateur grâce à une architecture plus travaillé des menus ainsi qu'une amélioration de son esthétique.
