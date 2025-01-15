@@ -112,3 +112,101 @@ Et la deuxieme ligne pour renvoyer l'arret du script dans le terminal (Write-Log
 <br>
 
 Voila qui conclu ce premier script.
+
+
+### Deuxième partie : les sous menu
+
+1. Cible, SSH et log
+
+
+![image](https://github.com/user-attachments/assets/df35ee6f-ec2b-4571-bd47-fdda89bcbe46)
+<br>
+
+Ce début de Script montre comment importer le module SSH pour la connectivité entre la machine serveur et la machine cible.
+Le paramètre $Cible permet de spécifier un nom de machine cible (ou une adresse IP) lors de l'exécution du script.
+"Add-Type -AssemblyName System.Windows.Forms" Charge la bibliothèque permettant de créer des interfaces graphiques avec Windows Forms.
+Enfin, Le module de script "chemin du fichier log" permet de définir un chemin pour enregistrer les logs, vérifie si le dossier Logs existe (sinon elle le crée) et active la capture des commandes exécutées et des résultats dans un fichier de log.
+
+2. La création de la fenêtre principale
+
+![image](https://github.com/user-attachments/assets/d8809a6e-0eb2-4e9a-8722-13e1b85bc2f0)
+<br>
+
+Cette partie du script permet de créer notre fenêtre principale grâce à Windows Forms.
+On configure alors un titre, la taille de notre fenêtre, et la position initiale centrée à l'écran.
+
+3. Les résultats des boutons
+
+![image](https://github.com/user-attachments/assets/e7a4a044-44e3-411e-912c-2a4e8986c530)
+<br>
+
+Ce bout de script ajoute une boîte de texte (en lecture seule) à la fenêtre, permettant d'afficher les résultats des commandes de nos futurs boutons.
+Encore une fois, via Windows forms, vous pouvez configurer la taille et largeurs de votre encadré.
+
+4. Le mot de passe
+
+![image](https://github.com/user-attachments/assets/59c3ec62-695d-48bd-a99a-a475f001200d)
+<br>
+
+Ce petit bout de scrip va demander à l'utilisateur de saisir un mot de passe pour se connecter à la machine cible via SSH. Ce mot de passe est stocké de manière sécurisée.
+
+5. La création de la credential
+
+![image](https://github.com/user-attachments/assets/8bfe0542-7ff9-4fda-9ba0-d6784aad1320)
+
+Cette autre petit bout de script permet la création d'une crédential : celle-ci tilise le mot de passe et le nom de la cible pour créer un objet PSCredential.
+et Tente d'établir une session SSH avec la machine cible.
+
+6. Création de la textbox
+
+![image](https://github.com/user-attachments/assets/deae57f0-93f9-48e9-ab91-b951e2160015)
+
+Ici, nous allons créer une textbox. Cela correspond à une zone de texte permettant de saisir des informations (comme le nom d'un utilisateur par exemple) pour des opérations.
+Encore une foi, celle ci étant crée via Windows forms, elle est totalement personnalisable à votre guise : $TextBox3.Location = New-Object System.Drawing.Point(10,370).
+
+7. La fonction pour sauvegarder les résultats dans le fichier "info"
+
+![image](https://github.com/user-attachments/assets/3190b43d-2825-454f-8a61-c1e01d258e12)
+<br>
+
+Cette fonction sauvegarde les résultats affichés dans un fichier texte.
+Celui ci est nommé dynamiquement selon la date et le nom de l'ordinateur.
+Dans ce fichier seront envoyé le résultats des sous boutons d'informations que nous verrons par la suite dans ce script
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
