@@ -8,7 +8,7 @@
 
 ![image](https://github.com/user-attachments/assets/ac2696a8-b06b-4584-a937-a3be1605d6af)
 <br>
-ce début de script va nous servir à créer un dossier log (sous reserve que ce dossier existe déja ).
+Ce début de script va nous servir à créer un dossier log (sous reserve que ce dossier existe déja ).
 Le fichier "log" dans ce dossier est une journalisation de la session ouvert et va avoir pour but stocker toutes les action qui sont effectuée sur la session lorsque l'on lance le script.
 
 2. La création de la fenêtre principale
@@ -172,6 +172,92 @@ Encore une foi, celle ci étant crée via Windows forms, elle est totalement per
 Cette fonction sauvegarde les résultats affichés dans un fichier texte.
 Celui ci est nommé dynamiquement selon la date et le nom de l'ordinateur.
 Dans ce fichier seront envoyé le résultats des sous boutons d'informations que nous verrons par la suite dans ce script
+
+8. La création de boutons: les boutons principaux
+
+![image](https://github.com/user-attachments/assets/5d600a89-a231-48ac-b070-7db4df20c221)
+<br>
+
+Nous rentrons dans le vif du sujet avec la création des boutons principaux !
+Ici, toujours via Windows form, on crée deux bouton nommé "Cible" et "Utilisateur".
+Les boutons permettent d'accéder à leurs sous boutons respectif pour pouvoir aller chercher les informations nécessaire.
+Ces boutons sont bien sûr personnalisable comme les boutons précédents.
+
+9. La création des 6 sous-boutons pour le bouton principal "Cible"
+
+![image](https://github.com/user-attachments/assets/dae55e6e-7e62-4506-800e-550f70200227)
+<br>
+
+Nous allons dans un premier temps nous pencher sur les sous boutons du bouton principal "Cible"
+En effet, pour aller récuperer les informations dont nous aurons besoin pour le fameux fichier info (créer plus tôt), cette partie du Script permets de créer 6 sous boutons d'information.
+Nous avons créer pour ce script les sous boutons :
+- " Dernière version de L'OS" nous donnant l'information du système d'explotation utilisé sur la cible
+- " Nom de l'ordinateur" permettant comme son nom l'indique de connaitre le nom de l'ordinateur cible
+- " Adresse IP actuelle " permettant de donner l'information de l'adresse IP de la cible
+- "lot d'information" permettantr en un clic de regrouper les 3 informations dess boutons du dessus
+- " Arret" qui permet la mise hors tension de la cible
+- " Redémarrage" permettant le redémarrage de la cible
+
+Ces boutons sont également personnalisables
+
+10. La création des 6 sous-boutons pour le bouton principal "Utilisateur"
+
+![image](https://github.com/user-attachments/assets/84d11c7c-391b-45ca-a514-ffa621c63e47)
+<br>
+
+Nous allons maintenant nous pencher sur les sous boutons du bouton principal "Utilisateurs"
+Comme ci dessus, pour  récuperer les informations dont nous aurons besoin pour notre fichier info, cette partie du Script permets de créer 6 sous boutons d'information.
+Nous avons créer pour ce script les sous boutons :
+- " Nom de l'utilisateur" nous donnant l'information du nom utilisateur de la cible
+- " dernière date de connexion" permettant  de connaitre la date de la dernière connection de l'utilisateur de la machine cible
+- "Liste des utilisateurs" permettant de donner la liste des utilisateurs de la cible
+- "lot d'information" permettantr en un clic de regrouper les 3 informations dess boutons du dessus
+- "Création d'un utilisateur" permet de créer un nouvel utilisateur
+- "Suppression Utilisateur" permet de supprimer un utilisateur
+
+Ces boutons sont également personnalisables comme au dessus grâce à Windows.forms !
+
+11. L'event Handler
+
+![image](https://github.com/user-attachments/assets/8e18f4af-3a9b-47c7-b9bf-5d1636909546)
+<br>
+
+Pour ce bout de bout de script , nous allons aborder l'event Handler :
+Chaque bouton est associé à une action spécifique via des blocs Add_Click.
+Cela contrôle la visibilité des éléments dans l'interface graphique ( notre fenêtre principale)  en fonction du bouton cliqué.
+Si le bouton Cible est sélectionné, les outils liés à la machine cible deviennent accessibles, et ceux liés à l'utilisateur sont masqués.
+Si le bouton Utilisateur est sélectionné, l'inverse se produit.
+L'objectif est de rendre l'interface plus intuitive et de ne montrer que les options pertinentes en fonction du contexte choisi (machine cible ou utilisateur).
+
+12. L'event Handler des sous boutons du bouton principal "Cible"
+
+![image](https://github.com/user-attachments/assets/b1c4d79c-747d-47da-9e2e-3e572b58c9a5)
+<br>
+
+Ici, nous allons créer les event handler concernant les sous boutons du bouton principal " cible"
+Chaque sous-bouton déclenche une commande spécifique exécutée sur une machine distante via une session SSH.
+voici une petit explication de cette commande importante :
+- Invoke-SSHCommand :Permet d'exécuter des commandes sur notre machine ciblle via SSH.(Le paramètre -SessionId $Cosh.SessionId identifie la session SSH active.)
+Save-Result : permet desauvegarder les résultats dans un fichier ou une base de données enZones de texte ($txtResult.Text) :
+Les informations sont affichées à l'utilisateur via une interface graphique et peuvent être sauvegardées pour consultation ultérieure ( dans le fichier info ou log pâr exemple)
+
+13. L'event Handler des sous boutons du bouton principal "Utilisateur"
+
+![image](https://github.com/user-attachments/assets/5b3baa7b-7962-4331-88cd-d90aedf27fbf)
+<br>
+
+Ce bout de script reprend le même princique qu'au dessus mais cette fois ci pour les sous boutons de notre boutons principal "utilisateur" :
+il permet de récupérer des informations détaillées sur les utilisateurs locaux de notre machine cible (nom, dernière connexion, liste des comptes).
+ces fonctionnalitées permettent d'exécuter toutes ces commandes à distance via une session SSH (Invoke-SSHCommand).
+
+14. Fin du script
+
+![image](https://github.com/user-attachments/assets/e4906203-a363-4cbf-8a1a-ac61402dfbbf)
+
+Ce bout de script cloture le script ainsi que de la fonctionnalité windows.form
+Il met également fin à la retranscription des informations recherché dans le script en partance pour notre fichier de journaling (le fichier log)
+
+
 
 
 
