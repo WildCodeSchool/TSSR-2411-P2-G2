@@ -256,7 +256,407 @@ ces fonctionnalitées permettent d'exécuter toutes ces commandes à distance vi
 
 Ce bout de script cloture le script ainsi que de la fonctionnalité windows.form
 Il met également fin à la retranscription des informations recherché dans le script en partance pour notre fichier de journaling (le fichier log)
+<br>
+<br>
 
+Vous trouverez ici le script complet :
+
+#----------------------------------------------------------------
+                 #récuperation du nom machine/ip
+
+param ( 
+    [string]$Cible
+)
+
+Write-Host "machine cible : $Cible ."
+
+#----------------------------------------------------------------
+
+Add-Type -AssemblyName System.Windows.Forms
+
+#----------------------------------------------------------------
+                    #import du module SSH
+
+Import-Module Posh-SSH
+
+#----------------------------------------------------------------
+                # Chemin du fichier de log
+
+$LogFilePath = "C:\Users\vboxuser\Desktop\p2main\Logs\journal_script2.log"
+if (!(Test-Path "C:\Users\vboxuser\Desktop\p2main\Logs")) {
+    New-Item -ItemType Directory -Path "C:\Users\vboxuser\Desktop\p2main\Logs" | Out-Null
+}
+Start-Transcript -Path $LogFilePath -Append
+
+#----------------------------------------------------------------
+            # Creation de la fenetre principale
+
+$form = New-Object System.Windows.Forms.Form
+$form.Text = "Informations Cible ou Utilisateur"
+$form.Size = New-Object System.Drawing.Size(400, 470)
+$form.StartPosition = "CenterScreen"
+
+#----------------------------------------------------------------
+      # Encadrer pour afficher les résultats des boutons
+
+$txtResult = New-Object System.Windows.Forms.TextBox
+$txtResult.Multiline = $true
+$txtResult.ReadOnly = $true
+$txtResult.ScrollBars = "Vertical"
+$txtResult.Size = New-Object System.Drawing.Size(360, 80)
+$txtResult.Location = New-Object System.Drawing.Point(10, 270)
+$form.Controls.Add($txtResult)
+
+#----------------------------------------------------------------
+                 # demander le mots de passe
+
+$mdp = Read-Host -AsSecureString "`nVeuillez renseignée le mot de passe de la cible : $Cible."
+
+#----------------------------------------------------------------
+                    # Crée un PSCredential
+
+$Credential = New-Object System.Management.Automation.PSCredential($Cible, $mdp)
+
+#----------------------------------------------------------------
+                    # crée un séssion ssh
+
+$Cossh = New-SSHSession -ComputerName $Cible -Credential $Credential -ConnectionTimeout 5 -ErrorAction SilentlyContinue
+
+
+#----------------------------------------------------------------
+                    # Création de TextBox
+
+# TextBox pour entrée du nom machine
+$TextBox3 = New-Object System.Windows.Forms.TextBox
+$TextBox3.Location = New-Object System.Drawing.Point(10,370)
+$TextBox3.Width = 360
+$Form.Controls.Add($TextBox3)
+
+#----------------------------------------------------------------
+# Fonction pour sauvegarder les résultats dans un fichier texte
+
+function Save-Result {
+    param (
+        [string]$Content
+    )
+
+    $date = (Get-Date).ToString("yyyyMMdd")
+    $desktopPath = "C:\Users\vboxuser\Desktop\p2main"
+    $fileName = "info_${env:COMPUTERNAME}_${date}.txt"
+    $filePath = Join-Path -Path $desktopPath -ChildPath $fileName
+
+    $Content | Out-File -FilePath $filePath -Encoding UTF8 -Append
+    "Résultat enregistrée dans $filePath" | Out-String
+}
+
+#----------------------------------------------------------------
+                     #création de bouton
+
+        # Les Boutons principaux (Cible et Utilisateur)
+
+#----------------
+
+#bouton principal cible
+$btnCible = New-Object System.Windows.Forms.Button
+$btnCible.Text = "Cible"
+$btnCible.Size = New-Object System.Drawing.Size(100, 30)
+$btnCible.Location = New-Object System.Drawing.Point(70, 20)
+$form.Controls.Add($btnCible)
+
+#----------------
+
+#bouton principal utilisateur
+$btnUtilisateur = New-Object System.Windows.Forms.Button
+$btnUtilisateur.Text = "Utilisateur"
+$btnUtilisateur.Size = New-Object System.Drawing.Size(100, 30)
+$btnUtilisateur.Location = New-Object System.Drawing.Point(200, 20)
+$form.Controls.Add($btnUtilisateur)
+
+#----------------
+             # Les 6 Sous-boutons pour "Cible"
+#----------------
+
+#bouton version de l'os
+$btnOSVersion = New-Object System.Windows.Forms.Button
+$btnOSVersion.Text = "DerniÃ¨re version de l'OS"
+$btnOSVersion.Size = New-Object System.Drawing.Size(160, 25)
+$btnOSVersion.Location = New-Object System.Drawing.Point(10, 50)
+$btnOSVersion.Visible = $false
+$form.Controls.Add($btnOSVersion)
+
+#----------------
+
+#bouton nom de la machine
+$btnComputerName = New-Object System.Windows.Forms.Button
+$btnComputerName.Text = "Nom de l'ordinateur"
+$btnComputerName.Size = New-Object System.Drawing.Size(160, 25)
+$btnComputerName.Location = New-Object System.Drawing.Point(10, 80)
+$btnComputerName.Visible = $false
+$form.Controls.Add($btnComputerName)
+
+#----------------
+
+#bouton adresse ip
+$btnIPAddress = New-Object System.Windows.Forms.Button
+$btnIPAddress.Text = "Adresse IP actuelle"
+$btnIPAddress.Size = New-Object System.Drawing.Size(160, 25)
+$btnIPAddress.Location = New-Object System.Drawing.Point(10, 110)
+$btnIPAddress.Visible = $false
+$form.Controls.Add($btnIPAddress)
+
+#----------------
+
+#bouton info cible
+$btnInfoBatchCible = New-Object System.Windows.Forms.Button
+$btnInfoBatchCible.Text = "Lot d'informations"
+$btnInfoBatchCible.Size = New-Object System.Drawing.Size(160, 25)
+$btnInfoBatchCible.Location = New-Object System.Drawing.Point(10, 140)
+$btnInfoBatchCible.Visible = $false
+$form.Controls.Add($btnInfoBatchCible)
+
+#----------------
+
+#bouton arret pc
+$Boutonstop = New-Object System.Windows.Forms.Button
+$Boutonstop.Text = "Arret"
+$Boutonstop.Size = New-Object System.Drawing.Size(160, 25)
+$Boutonstop.Location = New-Object System.Drawing.Point(10, 170)
+$Boutonstop.Visible = $false
+$form.Controls.Add($Boutonstop)
+
+#----------------
+
+#bouton reboot pc
+$Boutonreboot  = New-Object System.Windows.Forms.Button
+$Boutonreboot.Text = "Redémarrage"
+$Boutonreboot.Size = New-Object System.Drawing.Size(160, 25)
+$Boutonreboot.Location = New-Object System.Drawing.Point(10, 200)
+$Boutonreboot.Visible = $false
+$form.Controls.Add($Boutonreboot)
+
+#----------------
+              # Les 6 Sous-boutons pour "Utilisateur"
+#----------------
+
+#bouton nom de l'utilisateur
+$btnUserName = New-Object System.Windows.Forms.Button
+$btnUserName.Text = "Nom de l'utilisateur"
+$btnUserName.Size = New-Object System.Drawing.Size(160, 25)
+$btnUserName.Location = New-Object System.Drawing.Point(200, 50)
+$btnUserName.Visible = $false
+$form.Controls.Add($btnUserName)
+
+#----------------
+
+#bouton derrniere date de connexion
+$btnLastLogin = New-Object System.Windows.Forms.Button
+$btnLastLogin.Text = "Derniere date de connexion"
+$btnLastLogin.Size = New-Object System.Drawing.Size(160, 25)
+$btnLastLogin.Location = New-Object System.Drawing.Point(200, 80)
+$btnLastLogin.Visible = $false
+$form.Controls.Add($btnLastLogin)
+
+#----------------
+
+#bouton liste des utilisateurs
+$btnUserList = New-Object System.Windows.Forms.Button
+$btnUserList.Text = "Liste des utilisateurs"
+$btnUserList.Size = New-Object System.Drawing.Size(160, 25)
+$btnUserList.Location = New-Object System.Drawing.Point(200, 110)
+$btnUserList.Visible = $false
+$form.Controls.Add($btnUserList)
+
+#----------------
+
+#bouton lots d'information
+$btnInfoBatchUtilisateur = New-Object System.Windows.Forms.Button
+$btnInfoBatchUtilisateur.Text = "Lot d'informations"
+$btnInfoBatchUtilisateur.Size = New-Object System.Drawing.Size(160, 25)
+$btnInfoBatchUtilisateur.Location = New-Object System.Drawing.Point(200, 140)
+$btnInfoBatchUtilisateur.Visible = $false
+$form.Controls.Add($btnInfoBatchUtilisateur)
+
+#----------------
+
+#bouton ajout d'un utilisateur
+$Boutoncu = New-Object System.Windows.Forms.Button
+$Boutoncu.Text = "Création utilisateur"
+$Boutoncu.Size = New-Object System.Drawing.Size(160, 25)
+$Boutoncu.Location = New-Object System.Drawing.Point(200, 170)
+$Boutoncu.Visible = $false
+$form.Controls.Add($Boutoncu)
+
+#----------------
+
+#bouton suprimer un utilisateur
+$Boutondu = New-Object System.Windows.Forms.Button
+$Boutondu.Text = "Suppression utilisateur"
+$Boutondu.Size = New-Object System.Drawing.Size(160, 25)
+$Boutondu.Location = New-Object System.Drawing.Point(200, 200)
+$Boutondu.Visible = $false
+$form.Controls.Add($Boutondu)
+
+
+#----------------------------------------------------------------
+                         #Event handler
+
+# Actions des 2 boutons principaux
+$btnCible.Add_Click({
+    $currentTarget = $env:COMPUTERNAME
+
+    $btnOSVersion.Visible = $true
+    $btnComputerName.Visible = $true
+    $btnIPAddress.Visible = $true
+    $btnInfoBatchCible.Visible = $true
+    $Boutonstop.Visible = $true
+    $Boutonreboot.Visible = $true
+
+
+    $btnUserName.Visible = $false
+    $btnLastLogin.Visible = $false
+    $btnUserList.Visible = $false
+    $btnInfoBatchUtilisateur.Visible = $false
+    $Boutoncu.Visible = $false
+    $Boutondu.Visible = $false
+})
+
+$btnUtilisateur.Add_Click({
+    $currentTarget = $env:USERNAME
+
+    $btnOSVersion.Visible = $false
+    $btnComputerName.Visible = $false
+    $btnIPAddress.Visible = $false
+    $btnInfoBatchCible.Visible = $false
+    $Boutonstop.Visible = $false
+    $Boutonreboot.Visible = $false
+
+    $btnUserName.Visible = $true
+    $btnLastLogin.Visible = $true
+    $btnUserList.Visible = $true
+    $btnInfoBatchUtilisateur.Visible = $true
+    $Boutoncu.Visible = $true
+    $Boutondu.Visible = $true
+})
+
+#----------------------------------------------------------------
+                #Event handler des sous-boutons Cible
+
+#Event handler version os
+$btnOSVersion.Add_Click({
+    $result = Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "(Get-CimInstance Win32_OperatingSystem).Version"
+    $txtResult.Text = "DerniÃ¨re version de l'OS : $result"
+    Save-Result -Content $txtResult.Text
+})
+
+#------------------------------
+
+#Event handler nom machine
+$btnComputerName.Add_Click({
+    $result = Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "$env:COMPUTERNAME"
+    $txtResult.Text = "Nom de l'ordinateur : $result"
+    Save-Result -Content $txtResult.Text
+})
+
+#------------------------------
+
+#Event handler adresse ip
+$btnIPAddress.Add_Click({
+    $result = Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "(Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.InterfaceAlias -notlike "Loopback*" }).IPAddress"
+    $txtResult.Text = "Adresse IP actuelle : $result"
+    Save-Result -Content $txtResult.Text
+})
+
+#------------------------------
+
+#Event handler information machine
+$btnInfoBatchCible.Add_Click({
+    $osVersion = Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "(Get-CimInstance Win32_OperatingSystem).Version"
+    $computerName = $env:COMPUTERNAME
+    $ipAddress = Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "(Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.InterfaceAlias -notlike "Loopback*" }).IPAddress"
+
+    $content = "Dernière version de l'OS : $osVersion`nNom de l'ordinateur : $computerName`nAdresse IP actuelle : $ipAddress"
+    Save-Result -Content $content
+})
+
+#------------------------------
+
+#Event handler pour arret machine
+$Boutonstop.Add_Click({ 
+    Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "Stop-Computer"
+})
+
+#------------------------------
+
+#Event handler pour arret machine
+$Boutonreboot.Add_Click({ 
+    Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "Restart-Computer"
+})
+
+#----------------------------------------------------------------
+            # Actions des sous-boutons Utilisateur
+
+#Event handler nom utilisateur
+$btnUserName.Add_Click({
+    $result = Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "$env:USERNAME"
+    $txtResult.Text = "Nom de l'utilisateur : $result"
+    Save-Result -Content $txtResult.Text
+})
+
+#------------------------------
+
+#Event handler derniere connexion
+$btnLastLogin.Add_Click({
+    $result = Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "(Get-EventLog -LogName Security -Newest 1 -InstanceId 4624).TimeGenerated"
+    $txtResult.Text = "DerniÃ¨re connexion : $result"
+    Save-Result -Content $txtResult.Text
+})
+
+#------------------------------
+
+#Event handler liste utilisateur
+$btnUserList.Add_Click({
+    $result = Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "net user | Out-String"
+    $txtResult.Text = "Liste des utilisateurs locaux : `n$result"
+    Save-Result -Content $txtResult.Text
+})
+
+#------------------------------
+
+#Event handler information utilisateur
+$btnInfoBatchUtilisateur.Add_Click({
+    $userName = $env:USERNAME
+    $lastLogin = Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "(Get-EventLog -LogName Security -Newest 1 -InstanceId 4624).TimeGenerated"
+    $userList = Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "net user | Out-String"
+
+    $content = "Nom de l'utilisateur : $userName`nDernière connexion : $lastLogin`nListe des utilisateurs locaux :`n$userList"
+    Save-Result -Content $content
+})
+
+#------------------------------
+
+#Event handler pour création utilisateur
+$Boutoncu.Add_Click({ 
+    $nomnewuser = $TextBox3.text
+    Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "New-LocalUser -Name $nomnewuser -NoPassword"
+})
+
+#------------------------------
+
+#Event handler pour suppression utilisateur
+$Boutondu.Add_Click({ 
+    $nomdeluser = $TextBox3.text
+    Invoke-SSHCommand -SessionId $Cossh.SessionId -Command "Remove-LocalUser -Name $nomdeluser"
+})
+
+#----------------------------------------------------------------
+                    # Affichage de la fenetre
+
+[void]$form.ShowDialog()
+
+#----------------------------------------------------------------
+# stop la transcription dans les logs pour ce script
+
+Stop-Transcript
 
 
 
