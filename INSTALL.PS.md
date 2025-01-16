@@ -1,11 +1,19 @@
+## SOMMAIRE
+
+- [📜 1-Doc Graph](#docgraph)
+- [⚙️ log](#log)
+- [⚙️ La création de la fenêtre principale](#fenetre)
+- [⚙️ La création des boutons](#bouton)
+
 # Présentation des Scripts Powershell 
 
 ## Powershell
 
 ### Première partie : Doc graph admin 
+<span id="docgraph"></span>
 
 1. Log
-
+<span id="log"></span>
 ![image](https://github.com/user-attachments/assets/caeb21c4-a37e-4d38-97cd-f9b683691e64)
 
 <br>
@@ -16,6 +24,7 @@ Le fichier "log" dans ce dossier est une journalisation de la session ouvert et 
 <br>
 
 2. La création de la fenêtre principale
+ <span id="fenetre"></span>
 
 ![image](https://github.com/user-attachments/assets/5727c985-d9e8-46d1-973a-4c11a6c22ee8)
 
@@ -26,6 +35,7 @@ Ce petit bout de script permet de créer la fenêtre principale via Windows form
 <br> 
 
 3. La création des boutons
+<span id="bouton"></span>
 
 ![image](https://github.com/user-attachments/assets/68e1182f-8d9d-4593-82f4-9eafcfa918ee)
 
