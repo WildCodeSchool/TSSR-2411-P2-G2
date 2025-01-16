@@ -173,7 +173,8 @@ Enfin, Le module de script "chemin du fichier log" permet de définir un chemin 
 
 2. La création de la fenêtre principale
 
-![image](https://github.com/user-attachments/assets/d8809a6e-0eb2-4e9a-8722-13e1b85bc2f0)
+![image](https://github.com/user-attachments/assets/fb9dcc40-c138-4411-8174-632af1ea3c13)
+
 <br>
 
 Cette partie du script permet de créer notre fenêtre principale grâce à Windows Forms.
@@ -181,7 +182,8 @@ On configure alors un titre, la taille de notre fenêtre, et la position initial
 
 3. Les résultats des boutons
 
-![image](https://github.com/user-attachments/assets/e7a4a044-44e3-411e-912c-2a4e8986c530)
+![image](https://github.com/user-attachments/assets/0a66973b-67dd-49dd-af6a-6ba6a9781add)
+
 <br>
 
 Ce bout de script ajoute une boîte de texte (en lecture seule) à la fenêtre, permettant d'afficher les résultats des commandes de nos futurs boutons.
@@ -189,28 +191,44 @@ Encore une fois, via Windows forms, vous pouvez configurer la taille et largeurs
 
 4. Le mot de passe
 
-![image](https://github.com/user-attachments/assets/59c3ec62-695d-48bd-a99a-a475f001200d)
+![image](https://github.com/user-attachments/assets/6c7078dc-8843-461e-83a2-7e73f73d92a3)
+
 <br>
 
 Ce petit bout de scrip va demander à l'utilisateur de saisir un mot de passe pour se connecter à la machine cible via SSH. Ce mot de passe est stocké de manière sécurisée.
 
 5. La création de la credential
 
-![image](https://github.com/user-attachments/assets/8bfe0542-7ff9-4fda-9ba0-d6784aad1320)
+![image](https://github.com/user-attachments/assets/cc41a77a-d11f-4610-b8a3-49da06477fb2)
 
-Cette autre petit bout de script permet la création d'une crédential : celle-ci tilise le mot de passe et le nom de la cible pour créer un objet PSCredential.
-et Tente d'établir une session SSH avec la machine cible.
+<br>
+Cette autre petit bout de script permet la création d'une crédential : Le commentaire mentionne que vous devez remplacer la variable ou valeur associée à username par un nom d'utilisateur réel ($global:Utilisateur est utilisé pour stocker cette information.)
+La crédential sert à établir une session SSH avec la machine cible.
 
-6 . Création de la textbox
+6. Création d'une session SSH
 
-![image](https://github.com/user-attachments/assets/deae57f0-93f9-48e9-ab91-b951e2160015)
+![image](https://github.com/user-attachments/assets/484ca46d-377e-44ec-9f6f-4b1969abc423)
+<br>
+
+Ce bout de script permet d"établir une connexion SSH à une machine cible et gère les erreurs de connexion :
+il Utilise New-SSHSession avec un nom d'hôte ($global:Cible) et des informations d'identification ($Credential).
+Pour l'Affichage des détails de la tentative : il Montre le nom d'utilisateur et le mot de passe pour le débogage.
+Si la session SSH est établie, le script affiche un message de succès avec l'ID de session.
+Sinon, il affiche une erreur et arrête l'exécution.
+En cas d'échec, un message d'erreur est affiché et le script s'arrête avec un code de sortie
+
+7 . Création de la textbox
+
+![image](https://github.com/user-attachments/assets/8efb1f05-247d-4a54-8528-2fbb8b64395b)
+
 
 Ici, nous allons créer une textbox. Cela correspond à une zone de texte permettant de saisir des informations (comme le nom d'un utilisateur par exemple) pour des opérations.
 Encore une foi, celle ci étant crée via Windows forms, elle est totalement personnalisable à votre guise : $TextBox3.Location = New-Object System.Drawing.Point(10,370).
 
 7. La fonction pour sauvegarder les résultats dans le fichier "info"
 
-![image](https://github.com/user-attachments/assets/3f4fd0d3-6ae7-46eb-97df-e2b0f387ae2b)
+![image](https://github.com/user-attachments/assets/160ce72e-32b2-4b40-b1e9-4baf9b6f9903)
+
 
 <br>
 
@@ -220,7 +238,8 @@ Dans ce fichier seront envoyé le résultats des sous boutons d'informations que
 
 8. La création de boutons: les boutons principaux
 
-![image](https://github.com/user-attachments/assets/5d600a89-a231-48ac-b070-7db4df20c221)
+![image](https://github.com/user-attachments/assets/d03aef52-56cb-4476-a72d-144210c0c27a)
+
 <br>
 
 Nous rentrons dans le vif du sujet avec la création des boutons principaux !
@@ -230,7 +249,8 @@ Ces boutons sont bien sûr personnalisable comme les boutons précédents.
 
 9. La création des 6 sous-boutons pour le bouton principal "Cible"
 
-![image](https://github.com/user-attachments/assets/dae55e6e-7e62-4506-800e-550f70200227)
+![image](https://github.com/user-attachments/assets/ca715494-7df3-4781-85e7-d34445b5e072)
+
 <br>
 
 Nous allons dans un premier temps nous pencher sur les sous boutons du bouton principal "Cible"
@@ -247,7 +267,8 @@ Ces boutons sont également personnalisables
 
 10. La création des 6 sous-boutons pour le bouton principal "Utilisateur"
 
-![image](https://github.com/user-attachments/assets/84d11c7c-391b-45ca-a514-ffa621c63e47)
+![image](https://github.com/user-attachments/assets/f5ef1e48-d4f8-4c8b-bdff-fa522d462ba8)
+
 <br>
 
 Nous allons maintenant nous pencher sur les sous boutons du bouton principal "Utilisateurs"
@@ -264,7 +285,8 @@ Ces boutons sont également personnalisables comme au dessus grâce à Windows.f
 
 11. L'event Handler
 
-![image](https://github.com/user-attachments/assets/8e18f4af-3a9b-47c7-b9bf-5d1636909546)
+![image](https://github.com/user-attachments/assets/941f42e7-6bd7-4d2d-911f-27d2e503bb16)
+
 <br>
 
 Pour ce bout de bout de script , nous allons aborder l'event Handler :
@@ -276,19 +298,28 @@ L'objectif est de rendre l'interface plus intuitive et de ne montrer que les opt
 
 12. L'event Handler des sous boutons du bouton principal "Cible"
 
-![image](https://github.com/user-attachments/assets/b1c4d79c-747d-47da-9e2e-3e572b58c9a5)
+![image](https://github.com/user-attachments/assets/9c56f2c6-3ffa-4a61-aeb8-53e270a39df4)
+
 <br>
 
 Ici, nous allons créer les event handler concernant les sous boutons du bouton principal " cible"
-Chaque sous-bouton déclenche une commande spécifique exécutée sur une machine distante via une session SSH.
-voici une petit explication de cette commande importante :
-- Invoke-SSHCommand :Permet d'exécuter des commandes sur notre machine ciblle via SSH.(Le paramètre -SessionId $Cosh.SessionId identifie la session SSH active.)
-Save-Result : permet desauvegarder les résultats dans un fichier ou une base de données enZones de texte ($txtResult.Text) :
-Les informations sont affichées à l'utilisateur via une interface graphique et peuvent être sauvegardées pour consultation ultérieure ( dans le fichier info ou log pâr exemple)
+ce bout de script gère des événements liés à des actions SSH sur notre machine cible :
+- La Récupération des informations via SSH :
+Version de l'OS : Exécute une commande wmic pour obtenir la version de l'OS et l'affiche.
+Nom de la machine : Exécute la commande hostname pour récupérer le nom de l'ordinateur.
+Adresse IP : Exécute une commande ipconfig pour récupérer l'adresse IP (IPv4).
+- La Récupération complète :
+Cela Combine les informations (version OS, nom machine, IP) en une seule action pour une vue globale.
+Arrêt distant de la machine : Utilise la commande shutdown /s /t 0 pour éteindre la machine via SSH.
+Gestion des erreurs :Affiche des messages d’erreur spécifiques si une commande échoue.
+
+Il est concu pour interagir avec une session SSH active et afficher les résultats ou les erreurs dans une interface utilisateur.
 
 13. L'event Handler des sous boutons du bouton principal "Utilisateur"
 
-![image](https://github.com/user-attachments/assets/5b3baa7b-7962-4331-88cd-d90aedf27fbf)
+![image](https://github.com/user-attachments/assets/654b3a69-2704-463e-a2f9-58bb9c757d39)
+![image](https://github.com/user-attachments/assets/760e3f13-7b08-49b5-877d-04c790ffd276)
+
 <br>
 
 Ce bout de script reprend le même princique qu'au dessus mais cette fois ci pour les sous boutons de notre boutons principal "utilisateur" :
