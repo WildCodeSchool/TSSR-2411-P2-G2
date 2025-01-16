@@ -1,9 +1,33 @@
 ## SOMMAIRE
 
-- [📜 1-Doc Graph](#docgraph)
+- [📜 1-Script 1 Doc Graph](#docgraph)
 - [⚙️ log](#log)
 - [⚙️ La création de la fenêtre principale](#fenetre)
 - [⚙️ La création des boutons](#bouton)
+- [⚙️ La création des textbox](#textbox)
+- [⚙️ Les textes indicatifs](#texte)
+- [⚙️ Les labels pour afficher les résultats](#label)
+- [⚙️ La fonction pour effectuer un ping](#ping)
+- [⚙️ L'Event handler pour la connexion nom machine](#machine)
+- [⚙️ Event handler pour la connexion ](#ip)
+- [⚙️ Fin du script](#script)
+
+- [📜 2 -Script 2 : Camille.ps1](#ps1)
+- [⚙️ Cible, SSH et log](#ssh)
+- [⚙️ La création de la fenêtre principale](#principale)
+- [⚙️ Les résultats des boutons](#resultats)
+- [⚙️ Le mot de passe](#mdp)
+- [⚙️ La création de la credential](#mdp)
+- [⚙️ Création d'une session SSH](#session)
+- [⚙️ Création de la textbox](#texte)
+- [⚙️ La fonction pour sauvegarder les résultats dans le fichier "info"](#info)
+- [⚙️ La création de boutons: les boutons principaux](#principaux)
+- [⚙️ La création des 6 sous-boutons pour le bouton principal "Cible"](#ciblet)
+- [⚙️ La création des 6 sous-boutons pour le bouton principal "Utilisateur"](#utilisateur)
+- [⚙️ L'event Handler](#handler)
+- [⚙️ L'event Handler des sous boutons du bouton principal "Cible"](#handler2)
+- [⚙️ L'event Handler des sous boutons du bouton principal "Utilisateur""](#handler3)
+- [⚙️ fin du script"](#fin)
 
 # Présentation des Scripts Powershell 
 
@@ -50,6 +74,7 @@ Nous pouvons également modifier leurs contenus, mais ici, il resteront “conne
 <br>
 
 4. La création des Textbox
+<span id="textbox"></span>
 
 ![image](https://github.com/user-attachments/assets/9a087564-befb-41ac-9207-3f8384c5d3cf)
 
@@ -62,6 +87,7 @@ Comme pour les boutos en windows.form ci dessus nous pouvons paramétrer leurs e
 <br>
 
 5. Les textes indicatifs
+<span id="texte"></span>
 
 ![image](https://github.com/user-attachments/assets/6561e3b2-c347-4b3b-be7a-1baeddbca551)
 
@@ -77,6 +103,7 @@ encore une fois nous pouvons modifier leurs placement ( $Label.Location ) et leu
 <br>
 
 6 .Les labels pour afficher les résultats
+<span id="label"></span>
 
 ![image](https://github.com/user-attachments/assets/2c17adc2-e6ea-4002-86a4-fae5c610916b)
 
@@ -90,6 +117,7 @@ Nous pouvons ici aussi modifier son emplacement ($Label2.Location NewObject Syst
 <br>
 
 7 .La fonction pour effectuer un ping
+<span id="ping"></span>
 
 ![image](https://github.com/user-attachments/assets/1f22ab53-517f-4287-bab7-f1fc28432377)
 
@@ -115,6 +143,7 @@ Nous nous en servirons donc en tant que condition de lancement du deuxième scri
 <br>
 
 8 .L'Event handler pour la connexion nom machine
+<span id="machine"></span>
 
 ![image](https://github.com/user-attachments/assets/d080ff7a-aeb9-4ae9-ab96-e1dd9c91af34)
 
@@ -134,6 +163,7 @@ Cependant, nous n'avons jusque la pas réussi à la faire fonctionner correcteme
 <br>
 
 9 . Event handler pour la connexion IP
+<span id="ip"></span>
 
 ![image](https://github.com/user-attachments/assets/117d809d-43e3-4889-a020-b3f0ca59f542)
 
@@ -152,6 +182,7 @@ Cependant, nous n'avons jusque la pas réussi à la faire fonctionner correcteme
 <br>
 
 10. Fin du script
+<span id="script"></span>
 
 ![image](https://github.com/user-attachments/assets/b60fe23b-b796-4660-8215-5f62a7722e05)
 
@@ -167,8 +198,10 @@ Voila qui conclu ce premier script.
 
 
 ### Deuxième partie : le script Camille.ps1
+<span id="ps1"></span>
 
 1. Cible, SSH et log
+<span id="ssh"></span>
 
 
 ![image](https://github.com/user-attachments/assets/008c2283-9d1f-4bc3-b384-00d5155965f5)
@@ -182,6 +215,7 @@ Egalement, on initialise deux variables globales : $Cible (contenant la cible) e
 Enfin, Le module de script "chemin du fichier log" permet de définir un chemin pour enregistrer les logs, vérifie si le dossier Logs existe (sinon elle le crée) et active la capture des commandes exécutées et des résultats dans un fichier de log.
 
 2. La création de la fenêtre principale
+<span id="principale"></span>
 
 ![image](https://github.com/user-attachments/assets/fb9dcc40-c138-4411-8174-632af1ea3c13)
 
@@ -191,6 +225,7 @@ Cette partie du script permet de créer notre fenêtre principale grâce à Wind
 On configure alors un titre, la taille de notre fenêtre, et la position initiale centrée à l'écran.
 
 3. Les résultats des boutons
+<span id="resultats"></span>
 
 ![image](https://github.com/user-attachments/assets/0a66973b-67dd-49dd-af6a-6ba6a9781add)
 
@@ -200,6 +235,7 @@ Ce bout de script ajoute une boîte de texte (en lecture seule) à la fenêtre, 
 Encore une fois, via Windows forms, vous pouvez configurer la taille et largeurs de votre encadré.
 
 4. Le mot de passe
+<span id="mdp"></span>
 
 ![image](https://github.com/user-attachments/assets/6c7078dc-8843-461e-83a2-7e73f73d92a3)
 
@@ -208,6 +244,7 @@ Encore une fois, via Windows forms, vous pouvez configurer la taille et largeurs
 Ce petit bout de scrip va demander à l'utilisateur de saisir un mot de passe pour se connecter à la machine cible via SSH. Ce mot de passe est stocké de manière sécurisée.
 
 5. La création de la credential
+<span id="credential"></span>
 
 ![image](https://github.com/user-attachments/assets/cc41a77a-d11f-4610-b8a3-49da06477fb2)
 
@@ -216,6 +253,7 @@ Cette autre petit bout de script permet la création d'une crédential : Le comm
 La crédential sert à établir une session SSH avec la machine cible.
 
 6. Création d'une session SSH
+<span id="session"></span>
 
 ![image](https://github.com/user-attachments/assets/484ca46d-377e-44ec-9f6f-4b1969abc423)
 <br>
@@ -228,6 +266,7 @@ Sinon, il affiche une erreur et arrête l'exécution.
 En cas d'échec, un message d'erreur est affiché et le script s'arrête avec un code de sortie
 
 7 . Création de la textbox
+<span id="textboxe"></span>
 
 ![image](https://github.com/user-attachments/assets/8efb1f05-247d-4a54-8528-2fbb8b64395b)
 
@@ -236,6 +275,7 @@ Ici, nous allons créer une textbox. Cela correspond à une zone de texte permet
 Encore une foi, celle ci étant crée via Windows forms, elle est totalement personnalisable à votre guise : $TextBox3.Location = New-Object System.Drawing.Point(10,370).
 
 7. La fonction pour sauvegarder les résultats dans le fichier "info"
+<span id="info"></span>
 
 ![image](https://github.com/user-attachments/assets/160ce72e-32b2-4b40-b1e9-4baf9b6f9903)
 
@@ -247,6 +287,7 @@ Celui ci est nommé dynamiquement selon la date et le nom de l'ordinateur.
 Dans ce fichier seront envoyé le résultats des sous boutons d'informations que nous verrons par la suite dans ce script
 
 8. La création de boutons: les boutons principaux
+<span id="principaux"></span>
 
 ![image](https://github.com/user-attachments/assets/d03aef52-56cb-4476-a72d-144210c0c27a)
 
@@ -258,6 +299,7 @@ Les boutons permettent d'accéder à leurs sous boutons respectif pour pouvoir a
 Ces boutons sont bien sûr personnalisable comme les boutons précédents.
 
 9. La création des 6 sous-boutons pour le bouton principal "Cible"
+<span id="ciblet"></span>
 
 ![image](https://github.com/user-attachments/assets/ca715494-7df3-4781-85e7-d34445b5e072)
 
@@ -276,6 +318,7 @@ Nous avons créer pour ce script les sous boutons :
 Ces boutons sont également personnalisables
 
 10. La création des 6 sous-boutons pour le bouton principal "Utilisateur"
+<span id="utilisateur"></span>
 
 ![image](https://github.com/user-attachments/assets/f5ef1e48-d4f8-4c8b-bdff-fa522d462ba8)
 
@@ -294,6 +337,7 @@ Nous avons créer pour ce script les sous boutons :
 Ces boutons sont également personnalisables comme au dessus grâce à Windows.forms !
 
 11. L'event Handler
+<span id="handler"></span>
 
 ![image](https://github.com/user-attachments/assets/941f42e7-6bd7-4d2d-911f-27d2e503bb16)
 
@@ -307,6 +351,7 @@ Si le bouton Utilisateur est sélectionné, l'inverse se produit.
 L'objectif est de rendre l'interface plus intuitive et de ne montrer que les options pertinentes en fonction du contexte choisi (machine cible ou utilisateur).
 
 12. L'event Handler des sous boutons du bouton principal "Cible"
+<span id="handler2"></span>
 
 ![image](https://github.com/user-attachments/assets/9c56f2c6-3ffa-4a61-aeb8-53e270a39df4)
 
@@ -326,6 +371,7 @@ Gestion des erreurs :Affiche des messages d’erreur spécifiques si une command
 Il est concu pour interagir avec une session SSH active et afficher les résultats ou les erreurs dans une interface utilisateur.
 
 13. L'event Handler des sous boutons du bouton principal "Utilisateur"
+<span id="handler3"></span>
 
 ![image](https://github.com/user-attachments/assets/654b3a69-2704-463e-a2f9-58bb9c757d39)
 ![image](https://github.com/user-attachments/assets/760e3f13-7b08-49b5-877d-04c790ffd276)
@@ -351,6 +397,7 @@ En cas d'erreur (par exemple, session non valide ou échec de la commande), un m
 
 
 14. Fin du script
+<span id="fin"></span>
 
 ![image](https://github.com/user-attachments/assets/b8b9d894-e23a-4d04-8ce1-78a5406a91ad)
 <br>
