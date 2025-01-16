@@ -161,11 +161,13 @@ Voila qui conclu ce premier script.
 1. Cible, SSH et log
 
 
-![image](https://github.com/user-attachments/assets/df35ee6f-ec2b-4571-bd47-fdda89bcbe46)
+![image](https://github.com/user-attachments/assets/008c2283-9d1f-4bc3-b384-00d5155965f5)
+
 <br>
 
 Ce début de Script montre comment importer le module SSH pour la connectivité entre la machine serveur et la machine cible.
-Le paramètre $Cible permet de spécifier un nom de machine cible (ou une adresse IP) lors de l'exécution du script.
+Le paramètre ($Target) représentant une cible, comme une adresse IP ou un nom de machine lors de l'exécution du script.
+Egalement, on initialise deux variables globales : $Cible (contenant la cible) et $Utilisateur (fixée à "wilder").
 "Add-Type -AssemblyName System.Windows.Forms" Charge la bibliothèque permettant de créer des interfaces graphiques avec Windows Forms.
 Enfin, Le module de script "chemin du fichier log" permet de définir un chemin pour enregistrer les logs, vérifie si le dossier Logs existe (sinon elle le crée) et active la capture des commandes exécutées et des résultats dans un fichier de log.
 
