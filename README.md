@@ -40,12 +40,12 @@ A la suite de quoi il nous est demandé de présenter une exécution complète e
 ### **👥 Membres et rôles du groupe**
 <span id="membres-et-rôles-du-groupe"></span>  
 
-| Prénom    | Rôles              |
-| --------- | ------------------ | 
-| Alexandre | Scrum Master       | 
-| Camille   | Product Owner      |
-| Tom       | Developer          |
-| Thomas    | Developer          |
+| Prénom    | Rôles              | Tâches
+| --------- | ------------------ | ------------------ 
+| Alexandre | Scrum Master       | Powershell
+| Camille   | Product Owner      | Powershell
+| Tom       | Developer          | Bash
+| Thomas    | Developer          | Bash
 
 ---
 ### **⚙️ Choix Techniques**
@@ -79,5 +79,9 @@ Nous avons rencontré plusieurs difficulté au cours de ce projet :
 
 ### **🚀 Améliorations envisageable**
 <span id="améliorations"></span>
+### **🖥️ Powershell**
 - **L'Optimisation du scripts** : Il est toujours possible d'améliorer les deux scripts pour réduire le temps d'exécution et optimiser l'utilisation des ressources.
 - **Un meilleur visuel** : Proposer une meilleure expérience utilisateur grâce à une architecture plus travaillé des menus ainsi qu'une amélioration de son esthétique.
+
+### **🐧 Linux**
+- **Définir une variable pour la cible** : On a dû modifier dans le script 10 à 11 lignes avec le bon utilisateur, comme on l'avait fait sur une machine de test. Cela nous aurait fait gagner du temps et améliorer l'optimisation du script.
