@@ -85,3 +85,5 @@ Nous avons rencontré plusieurs difficulté au cours de ce projet :
 
 ### **🐧 Linux**
 - **Définir une variable pour la cible** : On a dû modifier dans le script 10 à 11 lignes avec le bon utilisateur, comme on l'avait fait sur une machine de test. Cela nous aurait fait gagner du temps et améliorer l'optimisation du script.
+- **Optimisation de la journalisation** : La journalisation n'est pas très optimisée, on a du mal à s'y retrouver. Ça fait l'affaire, mais c'est un point à améliorer pour pouvoir mieux s'y retrouver dans toute cette masse d'informations.
+- **Amélioration visuelle** : Quand on utilise la commande pour lister les utilisateurs, on ne les voit pas tous s'afficher.
