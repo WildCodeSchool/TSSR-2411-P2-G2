@@ -37,27 +37,27 @@ Puis la commande pour exécuter le script:
 ### **📘 Guide**
 <span id="guide"></span>
 
-**Étape 1**
+1️⃣ **Étape 1**
 - Une fois le script lancé, nous pourrons voir une interface dynamique s'ouvrir avec 2 options : une option pour se connecter à une machine via une adresse IP, et la seconde option pour simplement quitter le programme.
 
 ![image1](./img/1.png)
 
-**Étape 2**
+2️⃣ **Étape 2**
 - Entrez une adresse IP valide.
 
 ![image2](./img/2.png)
 
-**Étape 3**
+3️⃣ **Étape 3**
 - Entrez le mot de passe de l'utilisateur en question.
 
 ![image3](./img/3.png)
 
-**Étape 4**
+4️⃣ **Étape 4**
 - Si vous avez bien suivi les étapes, vous êtes censé arriver sur cette fenêtre pop-up. Si ce n'est pas le cas, connectez-vous d'abord en SSH avec l'invite de commande et réessayez avec le script.
 
 ![image4](./img/4.png)
 
-**Étape 5**
+5️⃣ **Étape 5**
 - Une fois cela fait, vous allez tomber sur un menu avec 3 options :
   - [1] Gestion des utilisateurs
   - [2] Gestion du système
@@ -65,18 +65,19 @@ Puis la commande pour exécuter le script:
  
   ![image5](./img/main.png)
 
-### **Menu des gestions**
+**📚 Menu des gestions**
 - Maintenant, libre à vous de choisir ce que vous voulez faire : soit gérer les utilisateurs sur la machine cible, soit gérer le système en pouvant voir certaines informations, interagir avec la cible en redémarrant la machine ou bien l'arrêter, etc.
 
-**Gestion des utilisateurs**
+**👥 Gestion des utilisateurs**
 
 ![image6](./img/usermanagement.png)
 
-**Gestion du système**
+**⚙️ Gestion du système**
 
 ![image7](./img/systemmanagement.png)
 
-### **Journalisation**
+**📜 Journalisation**
+
 Pour retrouver les logs, c'est simple, tu as deux fichiers logs que je vais te mettre ci-dessous avec leur répertoire. Tu vas pouvoir suivre toutes les actions qui seront entreprises sur la machine cible.
 ```bash
 $HOME/Documents/log_evt.log
@@ -103,7 +104,7 @@ $HOME/Documents/log_evt.log
 - **Supprimer un Utilisateur** : Supprime un utilisateur existant, après avoir tué ses processus actifs.
 - **Dernière Connexion d'un Utilisateur** : Affiche la dernière connexion d'un utilisateur spécifié.
 
-💻 Gestion du Système
+⚙️ Gestion du Système
 - **Arrêter la Machine** : Permet d'éteindre la machine distante.
 - **Redémarrer la Machine** : Redémarre la machine distante.
 - **Nom de l'Ordinateur** : Affiche le nom d’hôte de la machine.
