@@ -1,4 +1,4 @@
-# Présentation des Scripts Powershell et Bash 
+# Présentation des Scripts Powershell 
 
 ## Powershell
 
