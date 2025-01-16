@@ -61,7 +61,7 @@ Puis la commande pour exécuter le script:
 - Une fois cela fait, vous allez tomber sur un menu avec 3 options :
   - [1] Gestion des utilisateurs
   - [2] Gestion du système
-  - [3] Retourner en arrière dans le script"
+  - [3] Retourner en arrière dans le script
  
   ![image5](./img/main.png)
 
