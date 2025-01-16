@@ -115,7 +115,7 @@ $HOME/Documents/log_evt.log
 - **Suivi des Actions** : Toutes les actions effectuées (connexion SSH, gestion des utilisateurs, gestion du système) sont enregistrées dans un fichier de log (`log_evt.log`), pour assurer une traçabilité complète.
 - **Exemple** : Une connexion réussie sera enregistrée sous la forme suivante :
 20250116-123045-john-Connexion SSH réussie à `192.168.1.1`.
-- **Fichier** `info_`: Pour chaque machine cible, un fichier spécifique (info_<IP>.txt) est créé pour enregistrer des informations importantes (comme la liste des utilisateurs ou les informations système), permettant de garder une trace de ces données.
+- **Fichier** `info_`: Pour chaque machine cible, un fichier spécifique (`info_<IP>_<DATE>.txt`) est créé pour enregistrer des informations importantes (comme la liste des utilisateurs ou les informations système), permettant de garder une trace de ces données.
 
 🔄 Retour à l’Écran Précédent
 - Chaque menu te permet de revenir en arrière, te facilitant la navigation entre les différentes sections sans quitter le programme.
