@@ -38,6 +38,8 @@
 
 1. Log
 <span id="log"></span>
+<br>
+
 ![image](https://github.com/user-attachments/assets/caeb21c4-a37e-4d38-97cd-f9b683691e64)
 
 <br>
