@@ -67,10 +67,11 @@ Les machines sont configuré via virtualbox
 <span id="difficultés-rencontrées"></span>
 Nous avons rencontré plusieurs difficulté au cours de ce projet :
 
-- **La configuration des VM sous virtualbox** : La stabilité sous virtualbox n'était pas optimum notamment concernant nos VM Windows server et Windows 10
+- **La configuration des VM sous virtualbox** : La stabilité sous virtualbox n'était pas optimum notamment concernant nos VM Windows server et Windows 10 ce qui a considerablement ralentit le projet.
 - **Difficultés rencontrées au niveau de la connection SSH bash** : via debian, OpenSSH seul ne prend pas en charge l'entrée de mot de passe automatisée via la ligne de commande sans passer par un outil externe tel que SSHPASS
 - **Difficultés rencontrées au niveau de la connection SSH powershell** : Difficulté à installer la connectivité SSH du serveur au client via un serveur SSH
 - **Difficultés rencontrées au niveau de la connection WINRM** : Difficulté a configurée Winrm pour effectuée des commandes en remote.
+- **Difficultés rencontrées au passage d'information d'un script a l'autre** : Difficulté a faire en sorte que le premier script passe bien au second le nom de la machine ou l'ip à laquel l'utilisateur veux se connecter.
 
 ### **💡 Solutions trouvées**
 <span id="solutions"></span>
@@ -78,7 +79,8 @@ Nous avons rencontré plusieurs difficulté au cours de ce projet :
 - **Configuration de pare-feu** : Adaptation des règles de pare-feu pour permettre une communication fluide entre les machines virtuelles.
 - **Configuration connectivité SSH** : Via debian , en réponse au proble rencontré lors des essais de connectivité SSH, installation des logiciels OpenSSH et SSHPASS avant de faire fonctionner le script et également intégrer SSHPASS au script afin de garantir le bon fonctionnement de la connectivités.
 - **connection WINRM** : Aucune solution n'a encore été trouvé / implantée a ce jour, nous avons abort cette méthode pour passer sur posh ssh.
-
+- **passage d'information d'un script a l'autre** : Apres beaucoup d'essaie a invoquer le second script en lui transmettant soit le nom de la machine cible, soit l'ip cible. Nous avons trouver un moyen de le lancée en lui transmettant la variable $Target.
+  
 ### **🚀 Améliorations envisageable**
 <span id="améliorations"></span>
 ### **🖥️ Powershell**
