@@ -72,6 +72,7 @@ Nous avons rencontré plusieurs difficulté au cours de ce projet :
 - **Difficultés rencontrées au niveau de la connection SSH powershell** : Difficulté à installer la connectivité SSH du serveur au client via un serveur SSH
 - **Difficultés rencontrées au niveau de la connection WINRM** : Difficulté a configurée Winrm pour effectuée des commandes en remote.
 - **Difficultés rencontrées au passage d'information d'un script a l'autre** : Difficulté a faire en sorte que le premier script passe bien au second le nom de la machine ou l'ip à laquel l'utilisateur veux se connecter.
+- **Difficultés rencontrées avec la fermeture de la fenetre du premier script pour laisser la place a à celle du deuxieme script** : Apres beaucoup de recherche et beaucoup d'essaie a fermée la fenetre du premier script automatiquement lorsque le deuxieme script se lance avec sa fenetre nous n'avons toujour pas reussi a implemantée cette fonctionalitée.Nous avons donc les deux fenetre des script lorsque le second est lancée. 
 
 ### **💡 Solutions trouvées**
 <span id="solutions"></span>
@@ -86,6 +87,7 @@ Nous avons rencontré plusieurs difficulté au cours de ce projet :
 ### **🖥️ Powershell**
 - **L'Optimisation du scripts** : Il est toujours possible d'améliorer les deux scripts pour réduire le temps d'exécution et optimiser l'utilisation des ressources.
 - **Un meilleur visuel** : Proposer une meilleure expérience utilisateur grâce à une architecture plus travaillé des menus ainsi qu'une amélioration de son esthétique.
+- **Fermeture de la fenetre du premier script pour laisser la place a à celle du deuxieme script** : Trouvée un solution pour fermée la fenetre du premir script lorsque le second se lance. 
 
 ### **🐧 Linux**
 - **Définir une variable pour la cible** : On a dû modifier dans le script 10 à 11 lignes avec le bon utilisateur, comme on l'avait fait sur une machine de test. Cela nous aurait fait gagner du temps et améliorer l'optimisation du script.
